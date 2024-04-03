@@ -32,7 +32,7 @@ export default function SidebarTwo({
   return (
     <aside
       className={cn(
-        `fixed left-0 right-0 top-0 z-50 w-full border-r-2 border-r-muted transition-[width] md:bottom-0 md:right-auto md:h-svh ${isCollapsed ? 'md:w-14' : 'md:w-64'}`,
+        `border-r-2 border-r-muted transition-[width] md:bottom-0 md:right-auto md:h-svh ${isCollapsed ? 'md:w-14' : 'md:w-64'}`,
         className
       )}
     >
@@ -112,7 +112,7 @@ export default function SidebarTwo({
           onClick={() => setIsCollapsed((prev) => !prev)}
           size='icon'
           variant='outline'
-          className='absolute -right-5 top-1/2 hidden rounded-full md:inline-flex'
+          className='absolute -right-5 top-1/2 hidden rounded-full md:inline-flex z-50'
         >
           <IconChevronsLeft
             stroke={1.5}

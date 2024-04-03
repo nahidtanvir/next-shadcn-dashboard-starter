@@ -1,7 +1,11 @@
-import { useLocation } from 'react-router-dom'
+"use client"
+
+// import { useLocation } from 'react-router-dom'
+import { usePathname } from 'next/navigation'
 
 export default function useCheckActiveNav() {
-  const { pathname } = useLocation()
+  // const { pathname } = useLocation()
+  const pathname = usePathname()
 
   const checkActiveNav = (nav: string) => {
     const pathArray = pathname.split('/').filter((item) => item !== '')

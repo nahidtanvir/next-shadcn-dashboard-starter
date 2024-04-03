@@ -22,7 +22,7 @@ import {
   TooltipTrigger,
 } from './ui/tooltip'
 import { cn } from '@/lib/utils'
-// import useCheckActiveNav from '@/hooks/use-check-active-nav'
+import useCheckActiveNav from '@/hooks/use-check-active-nav'
 import { SideLink } from '@/data/sidelinks'
 
 interface NavProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -89,21 +89,21 @@ function NavLink({
                    closeNav,
                    subLink = false,
                  }: NavLinkProps) {
-  // const { checkActiveNav } = useCheckActiveNav()
+  const { checkActiveNav } = useCheckActiveNav()
   return (
     <Link
       href={href}
       onClick={closeNav}
       className={cn(
         buttonVariants({
-          // variant: checkActiveNav(href) ? 'secondary' : 'ghost',
-          variant: 'secondary',
+          variant: checkActiveNav(href) ? 'secondary' : 'ghost',
+          // variant: 'secondary',
           size: 'sm',
         }),
         'h-12 justify-start text-wrap rounded-none px-6',
         subLink && 'h-10 w-full border-l border-l-slate-500 px-2'
       )}
-      // aria-current={checkActiveNav(href) ? 'page' : undefined}
+      aria-current={checkActiveNav(href) ? 'page' : undefined}
     >
       <div className='mr-2'>{icon}</div>
       {title}
@@ -117,11 +117,11 @@ function NavLink({
 }
 
 function NavLinkDropdown({ title, icon, label, sub, closeNav }: NavLinkProps) {
-  // const { checkActiveNav } = useCheckActiveNav()
+  const { checkActiveNav } = useCheckActiveNav()
 
   /* Open collapsible by default
    * if one of child element is active */
-  // const isChildActive = !!sub?.find((s) => checkActiveNav(s.href))
+  const isChildActive = !!sub?.find((s) => checkActiveNav(s.href))
 
   return (
     <Collapsible defaultOpen={true}>
@@ -160,7 +160,7 @@ function NavLinkDropdown({ title, icon, label, sub, closeNav }: NavLinkProps) {
 }
 
 function NavLinkIcon({ title, icon, label, href }: NavLinkProps) {
-  // const { checkActiveNav } = useCheckActiveNav()
+  const { checkActiveNav } = useCheckActiveNav()
   return (
     <Tooltip delayDuration={0}>
       <TooltipTrigger asChild>
@@ -168,8 +168,8 @@ function NavLinkIcon({ title, icon, label, href }: NavLinkProps) {
           href={href}
           className={cn(
             buttonVariants({
-              // variant: checkActiveNav(href) ? 'secondary' : 'ghost',
-              variant: 'secondary',
+              variant: checkActiveNav(href) ? 'secondary' : 'ghost',
+              // variant: 'secondary',
               size: 'icon',
             }),
             'h-12 w-12'
@@ -190,11 +190,11 @@ function NavLinkIcon({ title, icon, label, href }: NavLinkProps) {
 }
 
 function NavLinkIconDropdown({ title, icon, label, sub }: NavLinkProps) {
-  // const { checkActiveNav } = useCheckActiveNav()
+  const { checkActiveNav } = useCheckActiveNav()
 
   /* Open collapsible by default
    * if one of child element is active */
-  // const isChildActive = !!sub?.find((s) => checkActiveNav(s.href))
+  const isChildActive = !!sub?.find((s) => checkActiveNav(s.href))
 
   return (
     <DropdownMenu>
@@ -202,8 +202,8 @@ function NavLinkIconDropdown({ title, icon, label, sub }: NavLinkProps) {
         <TooltipTrigger asChild>
           <DropdownMenuTrigger asChild>
             <Button
-              // variant={isChildActive ? 'secondary' : 'ghost'}
-              variant={'secondary'}
+              variant={isChildActive ? 'secondary' : 'ghost'}
+              // variant={'secondary'}
               size='icon'
               className='h-12 w-12'
             >
@@ -231,7 +231,7 @@ function NavLinkIconDropdown({ title, icon, label, sub }: NavLinkProps) {
           <DropdownMenuItem key={`${title}-${href}`} asChild>
             <Link
               href={href}
-              // className={`${checkActiveNav(href) ? 'bg-secondary' : ''}`}
+              className={`${checkActiveNav(href) ? 'bg-secondary' : ''}`}
             >
               {icon} <span className='ml-2 max-w-52 text-wrap'>{title}</span>
               {label && <span className='ml-auto text-xs'>{label}</span>}
