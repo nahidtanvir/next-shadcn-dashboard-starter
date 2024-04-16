@@ -20,7 +20,7 @@ export default function DashboardLayout({
   return (
     <>
       <Header />
-      <div className="sm:flex h-screen overflow-hidden mt-[57px]">
+      <div className="md:flex h-screen overflow-hidden mt-[57px]">
         {/*<Sidebar />*/}
         <SidebarTwo isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
         <main className="relative flex-1 overflow-y-auto overflow-x-hidden pt-16">{children}</main>
